@@ -71,3 +71,21 @@ Adds new point to a group.
 
 * `group` - name of a group the point belongs to
 * `coords` - coordinates of the point, passed as the `[lat, lng]` array
+
+This method returns a marker reference, so that you can, for example, bind a popup to it:
+
+```
+const popupContent = `
+  <div>
+    <div style="font-size:14px"><strong>Popup Info</strong></div>
+    <div style="font-size:10px">This is just popup bound to marker.</div>
+  </div>
+`;
+
+grouping.addPoint('Schools', [54, 17]).bindPopup(popupContent);
+
+// or:
+
+const pointS1 = grouping.addPoint('Schools', [54, 17]);
+pointS1.bindPopup(popupContent);
+```

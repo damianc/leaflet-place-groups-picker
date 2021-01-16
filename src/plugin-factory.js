@@ -107,6 +107,7 @@ export function pluginFactory(L) {
       );
 
       marker.addTo(this.groupsRefs[groupName]);
+      return marker;
     };
 
     /*
