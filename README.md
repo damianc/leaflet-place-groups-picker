@@ -10,7 +10,7 @@ npm i -P leaflet-place-groups-picker
 
 ## How to use the plugin
 
-<img src="./doc/images/screenshot.png" alt="Example of use of the plugin" />
+<img src="https://github.com/damianc/leaflet-place-groups-picker/blob/main/doc/images/screenshot.png" alt="Example of use of the plugin" />
 
 ```
 const map = L.map('map',{
