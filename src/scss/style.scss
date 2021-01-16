@@ -1,0 +1,62 @@
+@import 'animations';
+
+.place-groups {
+  border: 2px solid rgba(0,0,0,0.2);
+  width: 200px;
+  cursor: pointer;
+
+  &__caption {
+    padding: 10px 15px;
+    border-bottom: solid 1px #aaa;
+    background-color: rgba(255, 255, 255, .75);
+  }
+
+  &__list {
+    --icon-color: #aaa;
+    background-color: #fff;
+    max-height: 200px;
+    overflow-y: scroll;
+    height: 0;
+
+    &.show {
+      animation: anim-show .25s linear forwards;
+    }
+
+    &.hide {
+      animation: anim-hide .25s linear forwards;
+    }
+
+    &-item {
+      padding: 10px 15px;
+      transition: .25s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #eee;
+      }
+
+      &:before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        background-color: var(--icon-color);
+        display: inline-block;
+        margin-right: 10px;
+        border-radius: 3px;
+      }
+    }
+  }
+}
+
+.icon .icon-div {
+  width: 100%;
+  height: 100%;
+
+  &.icon-rounded {
+    border-radius: 5px;
+  }
+
+  &.icon-circle {
+    border-radius: 100%;
+  }
+}

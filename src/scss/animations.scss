@@ -1,0 +1,17 @@
+@keyframes anim-show {
+  from {
+    height: 0;
+  }
+  to {
+    height: 200px;
+  }
+}
+
+@keyframes anim-hide {
+  from {
+    height: 200px;
+  }
+  to {
+    height: 0;
+  }
+}
