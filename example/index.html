@@ -37,29 +37,40 @@
 
   map.addControl(grouping);
 
-  const popupContent = `
-    <div>
-      <div style="font-size:14px"><strong>Popup Info</strong></div>
-      <div style="font-size:10px">This is just popup bound to marker.</div>
-    </div>
-  `;
+  const places = {
+    'University': {
+      color: 'gold',
+      points: [[52, 15], [54, 15]]
+    },
+    'Factory': {
+      color: 'red',
+      points: [[50, 17], [53, 17.5]]
+    },
+    'Headquarter': {
+      color: 'teal',
+      points: [[52.5, 22], [52, 18.5]]
+    },
+    'Training Unit': {
+      color: 'darkkhaki',
+      points: [[53.5, 21], [50.5, 20]]
+    }
+  };
 
-  grouping.addGroup('University', { map, color: 'gold' });
-  grouping.addGroup('Factory', { map, color: 'red' });
-  grouping.addGroup('Headquarter', { map, color: 'teal' });
-  grouping.addGroup('Training Unit', { map, color: 'darkkhaki' });
+  Object.keys(places).forEach(group => {
+    const { color, points } = places[group];
 
-  grouping.addPoint('University', [52, 15]).bindPopup(popupContent);
-  grouping.addPoint('University', [54, 15]).bindPopup(popupContent);
+    grouping.addGroup(group, { map, color });
 
-  grouping.addPoint('Factory', [50, 17]).bindPopup(popupContent);
-  grouping.addPoint('Factory', [53, 17.5]).bindPopup(popupContent);
-
-  grouping.addPoint('Headquarter', [52.5, 22]).bindPopup(popupContent);
-  grouping.addPoint('Headquarter', [52, 18.5]).bindPopup(popupContent);
-
-  grouping.addPoint('Training Unit', [53.5, 21]).bindPopup(popupContent);
-  const xd = grouping.addPoint('Training Unit', [50.5, 20]).bindPopup(popupContent);
+    points.forEach((coords, idx) => {
+      const point = grouping.addPoint(group, coords);
+      point.bindPopup(`
+        <div>
+          <div style="font-size:14px"><strong>${group} ${idx + 1}</strong></div>
+          <div style="font-size:10px">${coords[0]} x ${coords[1]}</div>
+        </div>
+      `);
+    });
+  });
   </script>
   
 </body>
