@@ -116,6 +116,18 @@ export function pluginFactory(L) {
     };
 
     /*
+     * @method addPoints
+     * @param {string} groupName - Name of a group.
+     * @param {[number, number][]} coordsArr - Array of points declared by coordinates.
+     */
+
+    addPoints = (groupName, coordsArr) => {
+      return coordsArr.map(coords => {
+        return this.addPoint(groupName, coords);
+      });
+    };
+
+    /*
      * @method toggleList
      */
 
