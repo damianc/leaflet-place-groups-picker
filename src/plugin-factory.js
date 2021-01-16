@@ -44,6 +44,9 @@ export function pluginFactory(L) {
       this.#controlList = L.DomUtil.create('div', 'place-groups__list', this.#controlListWrapper);
 
       this.#buildMarkup();
+
+      L.DomUtil.disableTextSelection();
+      L.DomEvent.disableClickPropagation(this.#controlBox);
       L.DomEvent.disableScrollPropagation(this.#controlBox);
       L.DomEvent.on(this.#controlCaption, 'click', this.toggleList);
       L.DomEvent.on(this.#controlList, 'click', this.toggleListItem);
