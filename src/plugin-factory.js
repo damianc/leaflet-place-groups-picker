@@ -9,6 +9,7 @@ export function pluginFactory(L) {
     #listShown = false;
     #controlBox;
     #controlCaption;
+    #controlListWrapper;
     #controlList;
 
     /*
@@ -39,7 +40,8 @@ export function pluginFactory(L) {
     onAdd = () => {
       this.#controlBox = L.DomUtil.create('div', 'place-groups');
       this.#controlCaption = L.DomUtil.create('div', 'place-groups__caption', this.#controlBox);
-      this.#controlList = L.DomUtil.create('div', 'place-groups__list', this.#controlBox);
+      this.#controlListWrapper = L.DomUtil.create('div', 'place-groups__list--wrapper', this.#controlBox);
+      this.#controlList = L.DomUtil.create('div', 'place-groups__list', this.#controlListWrapper);
 
       this.#buildMarkup();
       L.DomEvent.disableScrollPropagation(this.#controlBox);
@@ -118,11 +120,11 @@ export function pluginFactory(L) {
       this.#listShown = !this.#listShown;
 
       if (this.#listShown) {
-        L.DomUtil.addClass(this.#controlList, 'show');
-        L.DomUtil.removeClass(this.#controlList, 'hide');
+        L.DomUtil.addClass(this.#controlListWrapper, 'show');
+        L.DomUtil.removeClass(this.#controlListWrapper, 'hide');
       } else {
-        L.DomUtil.addClass(this.#controlList, 'hide');
-        L.DomUtil.removeClass(this.#controlList, 'show');
+        L.DomUtil.addClass(this.#controlListWrapper, 'hide');
+        L.DomUtil.removeClass(this.#controlListWrapper, 'show');
       }
     };
 
