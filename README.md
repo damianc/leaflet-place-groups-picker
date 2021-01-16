@@ -10,6 +10,9 @@ npm i -P leaflet-place-groups-picker
 
 ## How to use the plugin
 
+![Example of use of the plugin][screen]
+[screen]: doc/images/screenshot.png "Example of use of the plugin"
+
 ```
 const map = L.map('map',{
   center: [52, 16],
