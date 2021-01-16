@@ -1,7 +1,6 @@
 @import 'animations';
 
 .place-groups {
-  border: 2px solid rgba(0,0,0,0.2);
   width: 200px;
   cursor: pointer;
 
@@ -9,21 +8,27 @@
     padding: 10px 15px;
     border-bottom: solid 1px #aaa;
     background-color: rgba(255, 255, 255, .75);
+    border: 2px solid rgba(0,0,0,0.2);
   }
 
   &__list {
     --icon-color: #aaa;
     background-color: #fff;
-    max-height: 200px;
-    overflow-y: scroll;
-    height: 0;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-top: none;
 
-    &.show {
-      animation: anim-show .25s linear forwards;
-    }
+    &--wrapper {
+      height: 0;
+      overflow-y: auto;
+      max-height: 200px;
 
-    &.hide {
-      animation: anim-hide .25s linear forwards;
+      &.show {
+        animation: anim-show .25s linear forwards;
+      }
+
+      &.hide {
+        animation: anim-hide .25s linear forwards;
+      }
     }
 
     &-item {
