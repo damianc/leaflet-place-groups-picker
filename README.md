@@ -146,6 +146,13 @@ grouping.addData(map, {
 
 * `groupName` - name of a group whose reference will be returned
 
+You may want to use this method to get a group reference when the `addData()` method was used to add data to a map, which does not return any references.
+
+```
+const universities = grouping.getGroupRef('University');
+console.log(universities.getBounds());
+```
+
 ## Operations on markers
 
 ### Removing marker from a map
