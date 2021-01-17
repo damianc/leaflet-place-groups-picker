@@ -119,7 +119,9 @@ first.bindPopup(popupContent);
 second.bindPopup(popupContent);
 ```
 
-### Removing markers from map
+## Operations on markers
+
+### Removing marker from a map
 
 Markers can be easily removed by the `remove()` method inherited from the [`Layer`](https://leafletjs.com/reference-1.7.1.html#layer) class:
 
@@ -128,5 +130,15 @@ const pointA = grouping.addPoint('Factory', [50, 15]);
 
 setTimeout(() => {
   pointA.remove();
+}, 2000);
+```
+
+### Removing marker only from a group
+
+```
+const pointA = grouping.addPoint('Factory', [50, 15]);
+
+setTimeout(() => {
+  pointA.removeFromGroup();
 }, 2000);
 ```

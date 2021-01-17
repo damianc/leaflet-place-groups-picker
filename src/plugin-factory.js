@@ -121,6 +121,8 @@ export function pluginFactory(L) {
         coords, { icon }
       );
 
+      this.#decorateMarker(marker, { groupName });
+
       marker.addTo(this.groupsRefs[groupName]);
       return marker;
     };
@@ -207,6 +209,28 @@ export function pluginFactory(L) {
       if (this.#opts.captionArrowColor) {
         this.#controlCaption.style.setProperty('--caption-arrow-color', this.#opts.captionArrowColor);
       }
+    };
+
+    /*
+     * Info related to a marker.
+     * @typedef MarkerMetaInfo
+     * @property {string} groupName - name of a group the marker belongs to 
+     */
+
+    /*
+     * @method decorateMarker
+     * @param {L.Marker} marker - marker reference for a point
+     * @param {MarkerMetaInfo} info - info related to the marker
+     */
+
+    #decorateMarker = (marker, { groupName }) => {
+      const that = this;
+
+      Object.defineProperty(marker, 'removeFromGroup', {
+        value: function () {
+          this.removeFrom(that.groupsRefs[groupName]);
+        }
+      });
     };
 
     /*
