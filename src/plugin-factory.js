@@ -25,6 +25,7 @@ export function pluginFactory(L) {
      * @property {string} caption - caption in the control
      * @property {string} captionColor - color of caption text
      * @property {string} captionBackground - background color of caption
+     * @property {string} captionArrowColor - color of caption arrow
      * @property {[number, number]} iconSize - size of icons
      * @property {boolean} iconShadow - whether to add shadow to icons
      * @property {boolean} iconInnerShadow - whether to add inset shadow to icons
@@ -146,9 +147,13 @@ export function pluginFactory(L) {
       if (this.#listShown) {
         L.DomUtil.addClass(this.#controlListWrapper, 'show');
         L.DomUtil.removeClass(this.#controlListWrapper, 'hide');
+        L.DomUtil.addClass(this.#controlCaption, 'open');
+        L.DomUtil.removeClass(this.#controlCaption, 'closed');
       } else {
         L.DomUtil.addClass(this.#controlListWrapper, 'hide');
         L.DomUtil.removeClass(this.#controlListWrapper, 'show');
+        L.DomUtil.addClass(this.#controlCaption, 'closed');
+        L.DomUtil.removeClass(this.#controlCaption, 'open');
       }
     };
 
@@ -193,8 +198,15 @@ export function pluginFactory(L) {
 
     #buildMarkup = () => {
       this.#controlCaption.textContent = this.#opts.caption || defaults.caption;
+      this.#controlCaption.classList.add('closed');
       this.#controlCaption.style.color = this.#opts.captionColor || defaults.captionColor;
       this.#controlCaption.style.background = this.#opts.captionBackground || defaults.captionBackground;
+
+      L.DomUtil.create('div', 'place-groups__caption-arrow', this.#controlCaption);
+
+      if (this.#opts.captionArrowColor) {
+        this.#controlCaption.style.setProperty('--caption-arrow-color', this.#opts.captionArrowColor);
+      }
     };
 
     /*

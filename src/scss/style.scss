@@ -5,9 +5,31 @@
   cursor: pointer;
 
   &__caption {
+    --caption-arrow-color: #444;
     padding: 10px 15px;
     border-bottom: solid 1px #aaa;
     border: solid 2px rgba(0, 0, 0, .2);
+    position: relative;
+
+    &-arrow {
+      position: absolute;
+      right: 10px;
+      width: 8px;
+      height: 8px;
+      border-left: solid 2px var(--caption-arrow-color);
+      border-bottom: solid 2px var(--caption-arrow-color);
+      transition: .25s;
+    }
+
+    &.open &-arrow {
+      transform: rotate(45deg);
+      top: 14px;
+    }
+
+    &.closed &-arrow {
+      transform: rotate(-45deg);
+      top: 12px;
+    }
   }
 
   &__list {

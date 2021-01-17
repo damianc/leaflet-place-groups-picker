@@ -53,6 +53,7 @@ grouping.addPoint('Schools', [54, 17]);
 | `caption` | Caption to display in a control. | `Groups` |
 | `captionColor` | Color of a caption text. | `#333` |
 | `captionBackground` | Background color (or image/gradient) of a caption. | `rgba(255, 255, 255, .75)` |
+| `captionArrowColor` | Color of a caption arrow indicating a list visibility state. | `#444` |
 | `iconSize` | Size of icons. | `[30, 30]` |
 | `iconShadow` | Whether to add a shadow to icons. | `false` |
 | `iconInnerShadow` | Whether to add an inset shadow to icons. | `false` |
