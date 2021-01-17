@@ -8,6 +8,10 @@
     "copy": "cp dist/index.js example/leaflet-place-groups-picker.js",
     "dist": "npm run build && npm run copy"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/damianc/leaflet-place-groups-picker.git"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
