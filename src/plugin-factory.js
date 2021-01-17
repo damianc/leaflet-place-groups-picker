@@ -84,24 +84,33 @@ export function pluginFactory(L) {
      * @method addGroup
      * @param {string} name - Name of a group.
      * @param {GroupOptions} options - Settings of a group.
+     * @returns {L.FeatureGroup} The newly added group reference.
      */
 
     addGroup = (name, { color, map }) => {
+      const groupRef = L.featureGroup().addTo(map);
+
+      Object.defineProperty(groupRef, 'linkedMap', {
+        value: map
+      });
+
       this.groupsStates[name] = true;
       this.groupsThemes[name] = color;
-      this.groupsRefs[name] = L.featureGroup().addTo(map);
-      this.groupsRefs[name].linkedMap = map;
+      this.groupsRefs[name] = groupRef;
 
       const groupItem = L.DomUtil.create('div', 'place-groups__list-item', this.#controlList);
       groupItem.textContent = name;
       groupItem.style.setProperty('--icon-color', color);
       groupItem.dataset.groupName = name;
+
+      return groupRef;
     };
 
     /*
      * @method addPoint
      * @param {string} groupName - Name of a group.
      * @param {[number, number]} coords - Coordinates of a point.
+     * @returns {L.Marker} The newly added marker reference.
      */
 
     addPoint = (groupName, coords) => {
@@ -131,6 +140,7 @@ export function pluginFactory(L) {
      * @method addPoints
      * @param {string} groupName - Name of a group.
      * @param {[number, number][]} coordsArr - Array of points declared by coordinates.
+     * @returns {L.Marker[]} Array of references to the newly added markers.
      */
 
     addPoints = (groupName, coordsArr) => {
@@ -235,6 +245,7 @@ export function pluginFactory(L) {
 
     /*
      * @method getIconShadow
+     * @returns {string} String for box-shadow CSS property.
      */
 
     #getIconShadow = () => {
@@ -257,6 +268,7 @@ export function pluginFactory(L) {
 
     /*
      * @method getIconClassName
+     * @returns {string} Class name for an icon.
      */
 
     #getIconClassName = () => {

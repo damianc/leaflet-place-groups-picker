@@ -70,6 +70,8 @@ Adds new group of places.
   * `map` - a map reference
   * `color` - color of icons related to the group
 
+This method returns a reference to the newly added group (`L.FeatureGroup`).
+
 ### `addPoint(group, coords)`
 
 Adds new point to a group.
