@@ -60,6 +60,7 @@ grouping.addPoint('Schools', [54, 17]);
 | `iconShadow` | Whether to add a shadow to icons. | `false` |
 | `iconInnerShadow` | Whether to add an inset shadow to icons. | `false` |
 | `iconStyle` | Icon style: `rectangle`, `circle` or `rounded` | `rectangle` |
+| `static` | When `true`, toggling groups visibility is disabled. | `false` |
 
 ### `addGroup(name, options)`
 

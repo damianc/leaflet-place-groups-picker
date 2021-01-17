@@ -30,6 +30,7 @@ export function pluginFactory(L) {
      * @property {boolean} iconShadow - whether to add shadow to icons
      * @property {boolean} iconInnerShadow - whether to add inset shadow to icons
      * @property {(rectangle|circle|rounded)} iconStyle - style of icons
+     * @property {boolean} static - disable toggling visibility of groups
      */
 
     /*
@@ -58,8 +59,13 @@ export function pluginFactory(L) {
       L.DomUtil.disableTextSelection();
       L.DomEvent.disableClickPropagation(this.#controlBox);
       L.DomEvent.disableScrollPropagation(this.#controlBox);
-      L.DomEvent.on(this.#controlCaption, 'click', this.toggleList);
-      L.DomEvent.on(this.#controlList, 'click', this.toggleListItem);
+      L.DomEvent.on(this.#controlCaption, 'click', this.#toggleList);
+
+      if (!this.#opts.static) {
+        L.DomEvent.on(this.#controlList, 'click', this.#toggleListItem);
+      } else {
+        L.DomUtil.addClass(this.#controlList, 'list-static');
+      }
 
       return this.#controlBox;
     };
@@ -69,8 +75,11 @@ export function pluginFactory(L) {
      */
 
     onRemove = () => {
-      L.DomEvent.off(this.#controlCaption, 'click', this.toggleList);
-      L.DomEvent.off(this.#controlList, 'click', this.toggleListItem);
+      L.DomEvent.off(this.#controlCaption, 'click', this.#toggleList);
+
+      if (!this.#opts.static) {
+        L.DomEvent.off(this.#controlList, 'click', this.#toggleListItem);
+      }
     };
 
     /*
@@ -153,7 +162,7 @@ export function pluginFactory(L) {
      * @method toggleList
      */
 
-    toggleList = () => {
+    #toggleList = () => {
       this.#listShown = !this.#listShown;
 
       if (this.#listShown) {
@@ -174,7 +183,7 @@ export function pluginFactory(L) {
      * @param {Event} e - Event object.
      */
 
-    toggleListItem = (e) => {
+    #toggleListItem = (e) => {
       const { target } = e;
       const { groupName } = target.dataset;
 
