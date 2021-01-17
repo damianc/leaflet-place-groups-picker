@@ -124,6 +124,28 @@ first.bindPopup(popupContent);
 second.bindPopup(popupContent);
 ```
 
+### `addData(map, data)`
+
+* `map` - a map reference (`L.Map`)
+* `data` - object whose keys reflect group names and values are object with the following properties: `color` and `points`
+
+```
+grouping.addData(map, {
+  'University': {
+    color: 'red',
+    points: [[48, 14], [48, 15]]
+  },
+  'Library': {
+    color: '#2af',
+    points: [[58, 14], [58, 15]]
+  }
+});
+```
+
+### `getGroupRef(groupName)`
+
+* `groupName` - name of a group whose reference will be returned
+
 ## Operations on markers
 
 ### Removing marker from a map

@@ -159,6 +159,43 @@ export function pluginFactory(L) {
     };
 
     /*
+     * Object with points and group-specific data.
+     * @typedef GroupData
+     * @property {string} color - color of icons related to the group
+     * @points {[number, number][]} - array of points declared as [lat, lng] array
+     */
+
+    /*
+     * @method addData
+     * @param {L.Map} map - Map the data is to be added on.
+     * @param {{string, GroupData}} data - Object with groups and points to add to the map.
+     */
+
+    addData = (map, data) => {
+      Object.keys(data).forEach(group => {
+        const groupData = data[group];
+
+        if (!this.groupsRefs[group]) {
+          this.addGroup(group, { map, color: groupData.color });
+        }
+
+        if (Array.isArray(groupData.points)) {
+          this.addPoints(group, groupData.points);
+        }
+      });
+    };
+
+    /*
+     * @method getGroupRef
+     * @param {string} groupName - name of a group whose reference is to be returned.
+     * @returns {L.FeatureGroup} A FeatureGroup related to the group.
+     */
+
+    getGroupRef = (groupName) => {
+      return this.groupsRefs[groupName];
+    };
+
+    /*
      * @method toggleList
      */
 
