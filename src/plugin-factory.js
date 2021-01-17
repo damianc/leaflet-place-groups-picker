@@ -1,5 +1,12 @@
 export function pluginFactory(L) {
 
+  const defaults = {
+    caption: 'Groups',
+    captionColor: '#333',
+    captionBackground: 'rgba(255, 255, 255, .75)',
+    iconSize: [30, 30]
+  }
+
   class PlaceGroupsPicker extends L.Control {
     groupsStates = {};
     groupsThemes = {};
@@ -16,6 +23,8 @@ export function pluginFactory(L) {
      * Control settings.
      * @typedef {Object} PluginOptions
      * @property {string} caption - caption in the control
+     * @property {string} captionColor - color of caption text
+     * @property {string} captionBackground - background color of caption
      * @property {[number, number]} iconSize - size of icons
      * @property {boolean} iconShadow - whether to add shadow to icons
      * @property {boolean} iconInnerShadow - whether to add inset shadow to icons
@@ -174,7 +183,7 @@ export function pluginFactory(L) {
       if (opts.iconSize && Array.isArray(opts.iconSize)) {
         this.#opts.iconSize = opts.iconSize;
       } else {
-        this.#opts.iconSize = [30, 30];
+        this.#opts.iconSize = defaults.iconSize;
       }
     };
 
@@ -183,7 +192,9 @@ export function pluginFactory(L) {
      */
 
     #buildMarkup = () => {
-      this.#controlCaption.textContent = this.#opts.caption || 'Groups';
+      this.#controlCaption.textContent = this.#opts.caption || defaults.caption;
+      this.#controlCaption.style.color = this.#opts.captionColor || defaults.captionColor;
+      this.#controlCaption.style.background = this.#opts.captionBackground || defaults.captionBackground;
     };
 
     /*

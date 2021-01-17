@@ -51,6 +51,8 @@ grouping.addPoint('Schools', [54, 17]);
 |----|----|----|
 | `position` | Where to place a control on the map (`topleft`, `topright`, `bottomleft` or `bottomright`). | no default value |
 | `caption` | Caption to display in a control. | `Groups` |
+| `captionColor` | Color of a caption text. | `#333` |
+| `captionBackground` | Background color (or image/gradient) of a caption. | `rgba(255, 255, 255, .75)` |
 | `iconSize` | Size of icons. | `[30, 30]` |
 | `iconShadow` | Whether to add a shadow to icons. | `false` |
 | `iconInnerShadow` | Whether to add an inset shadow to icons. | `false` |
@@ -106,10 +108,6 @@ const popupContent = `
     <div style="font-size:10px">This is just popup bound to marker.</div>
   </div>
 `;
-
-grouping.addPoint('Schools', [54, 17]).bindPopup(popupContent);
-
-// or:
 
 const [first, second] = grouping.addPoints('Schools', [
   [54, 17],
