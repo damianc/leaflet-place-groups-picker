@@ -1,5 +1,7 @@
 # leaflet-place-groups-picker
 
+![npm](https://img.shields.io/npm/v/leaflet-place-groups-picker)
+
 Plugin for the Leaflet maps that allows grouping places in groups whose visibility can be toggled.
 
 ## Installation
